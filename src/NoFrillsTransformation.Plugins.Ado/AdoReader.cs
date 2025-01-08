@@ -101,11 +101,31 @@ namespace NoFrillsTransformation.Plugins.Ado
             throw new NotImplementedException();
         }
 
+        private Dictionary<int, string>? _fieldTypes;
+        public string GetFieldType(int index)
+        {
+            if (null == _fieldTypes)
+            {
+                _fieldTypes = new Dictionary<int, string>();
+                for (int i = 0; i < FieldCount; ++i)
+                    _fieldTypes.Add(i, SqlReader.GetFieldType(i).ToString());
+            }
+            return _fieldTypes[index];
+        }
+
         #region IRecord
         public string this[int index]
         {
             get
             {
+                switch (GetFieldType(index)) {
+                    case "System.DateTime":
+                        return SqlReader.GetDateTime(index).ToString("o");
+                    case "System.Byte[]":
+                        byte[] bytes = new byte[SqlReader.GetBytes(index, 0, null, 0, 0)];
+                        SqlReader.GetBytes(index, 0, bytes, 0, bytes.Length);
+                        return Convert.ToHexString(bytes);
+                }
                 return SqlReader.GetValue(index).ToString() ?? string.Empty;
             }
         }
