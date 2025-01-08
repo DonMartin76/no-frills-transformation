@@ -20,19 +20,33 @@ namespace NoFrillsTransformation.Operators
         }
 
         private bool _ignoreCase = false;
+        private bool _ignoreCrLf = false;
 
         public string Evaluate(IEvaluator eval, IExpression expression, IContext context)
         {
             var compType = _ignoreCase ? StringComparison.InvariantCultureIgnoreCase : StringComparison.InvariantCulture;
-            return BoolToString(
-                eval.Evaluate(eval, expression.Arguments[0], context).Equals(
-                    eval.Evaluate(eval, expression.Arguments[1], context),
-                    compType));
+            var a = eval.Evaluate(eval, expression.Arguments[0], context);
+            var b = eval.Evaluate(eval, expression.Arguments[1], context);
+            if (_ignoreCrLf)
+            {
+                a = ReplaceCrLf(a);
+                b = ReplaceCrLf(b);
+            }
+            return BoolToString(a.Equals(b, compType));
+        }
+
+        private static string ReplaceCrLf(string s)
+        {
+            return s.Replace("\r\n", "\n").Replace("\r", "\n");
         }
 
         public override void Configure(string? config)
         {
-            _ignoreCase = config != null ? config.Equals("ignorecase", StringComparison.InvariantCultureIgnoreCase) : false;
+            if (config == null)
+                return;
+            var options = config.Split(',').Select(x => x.ToLowerInvariant().Trim());
+            _ignoreCase = options.Contains("ignorecase");
+            _ignoreCrLf = options.Contains("ignorecrlf");
         }
     }
 }
