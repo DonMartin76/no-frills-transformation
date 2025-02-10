@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NoFrillsTransformation.Interfaces;
-
+using LumenWorks.Framework.IO.Csv;
 using LumenWorks.Framework.IO;
 using System.IO;
 
@@ -23,7 +23,15 @@ namespace NoFrillsTransformation.Plugins.Csv
                     textReader = new StreamReader(new FileStream(_fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
                 else
                     textReader = new StreamReader(new FileStream(_fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite), _encoding);
-                _csvReader = new LumenWorks.Framework.IO.Csv.CsvReader(textReader, true, _delimiter);
+                _csvReader = new CsvReader(
+                    textReader,
+                    true,
+                    _delimiter,
+                    CsvReader.DefaultQuote,
+                    CsvReader.DefaultEscape,
+                    CsvReader.DefaultComment,
+                    ValueTrimmingOptions.None,
+                    CsvReader.DefaultBufferSize);
                 ConfigureReader();
             }
             catch (Exception)
