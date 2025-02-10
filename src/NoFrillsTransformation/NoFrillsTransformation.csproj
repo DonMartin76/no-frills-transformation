@@ -20,6 +20,7 @@
     <ProjectReference Include="../NoFrillsTransformation.LumenWorks.Framework.IO/NoFrillsTransformation.LumenWorks.Framework.IO.csproj" />
     <ProjectReference Include="../NoFrillsTransformation.Operators/NoFrillsTransformation.Operators.csproj" />
     <ProjectReference Include="../NoFrillsTransformation.Operators.Utils/NoFrillsTransformation.Operators.Utils.csproj" />
+    <ProjectReference Include="../NoFrillsTransformation.Plugins.Acumatica/NoFrillsTransformation.Plugins.Acumatica.csproj" />
     <ProjectReference Include="../NoFrillsTransformation.Plugins.Ado/NoFrillsTransformation.Plugins.Ado.csproj" />
     <ProjectReference Include="../NoFrillsTransformation.Plugins.Ado.Postgres/NoFrillsTransformation.Plugins.Ado.Postgres.csproj" />
     <ProjectReference Include="../NoFrillsTransformation.Plugins.Ado.SqlServer/NoFrillsTransformation.Plugins.Ado.SqlServer.csproj" />

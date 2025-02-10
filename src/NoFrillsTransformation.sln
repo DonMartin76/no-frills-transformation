@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoFrillsTransformation.Plug
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoFrillsTransformation.Plugins.Salesforce.DotNet", "NoFrillsTransformation.Plugins.Salesforce.DotNet\NoFrillsTransformation.Plugins.Salesforce.DotNet.csproj", "{967AFDFE-ADDF-4341-9FB7-C4549929EC8B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoFrillsTransformation.Plugins.Acumatica", "NoFrillsTransformation.Plugins.Acumatica\NoFrillsTransformation.Plugins.Acumatica.csproj", "{32C87CC4-939A-4C55-A100-15E153C5B33C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,5 +98,9 @@ Global
 		{967AFDFE-ADDF-4341-9FB7-C4549929EC8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{967AFDFE-ADDF-4341-9FB7-C4549929EC8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{967AFDFE-ADDF-4341-9FB7-C4549929EC8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32C87CC4-939A-4C55-A100-15E153C5B33C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32C87CC4-939A-4C55-A100-15E153C5B33C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32C87CC4-939A-4C55-A100-15E153C5B33C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32C87CC4-939A-4C55-A100-15E153C5B33C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
