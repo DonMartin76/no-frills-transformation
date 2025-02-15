@@ -124,7 +124,7 @@ namespace NoFrillsTransformation.Plugins.Ado
                     case "System.Byte[]":
                         byte[] bytes = new byte[SqlReader.GetBytes(index, 0, null, 0, 0)];
                         SqlReader.GetBytes(index, 0, bytes, 0, bytes.Length);
-                        return Convert.ToHexString(bytes);
+                        return "0x" + Convert.ToHexString(bytes);
                 }
                 return SqlReader.GetValue(index).ToString() ?? string.Empty;
             }
