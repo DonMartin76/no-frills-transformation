@@ -11,19 +11,19 @@ using NoFrillsTransformation.Interfaces;
 namespace NoFrillsTransformation.Plugins.Acumatica.Operators
 {
     [Export(typeof(IOperator))]
-    public class AcumaticaDateTimeNowOperator : IOperator
+    public class AcumaticaBoolOperator : IOperator
     {
-        public string Name => "acudatetimenow";
+        public string Name => "acubool";
 
-        public string Description => "Outputs the current date and time in an Acumatica compatible format.";
+        public string Description => "Maps values of true/True/1 to 1 and false/False/0 to 0.";
 
         public ExpressionType Type => ExpressionType.Custom;
 
-        public int ParamCount => 0;
+        public int ParamCount => 1;
 
-        public ParamType[]? ParamTypes => [];
+        public ParamType[]? ParamTypes => new ParamType[] { ParamType.String };
 
-        public ParamType ReturnType => ParamType.String;
+        public ParamType ReturnType => ParamType.Int;
 
         public void Configure(string? config)
         {
@@ -31,8 +31,17 @@ namespace NoFrillsTransformation.Plugins.Acumatica.Operators
 
         public string Evaluate(IEvaluator eval, IExpression expression, IContext context)
         {
-            // Return a date time for "now" in this form: "2022-06-02 09:25:36.083"
-            return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            string parameter = eval.Evaluate(eval, expression.Arguments[0], context).ToLowerInvariant();
+            switch (parameter)
+            {
+                case "true":
+                case "1":
+                    return "1";
+                case "false":
+                case "0":
+                    return "0";
+            }
+            return "0";
         }
-   }
+    }
 }

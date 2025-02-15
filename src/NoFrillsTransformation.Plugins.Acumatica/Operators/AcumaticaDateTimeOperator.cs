@@ -11,17 +11,17 @@ using NoFrillsTransformation.Interfaces;
 namespace NoFrillsTransformation.Plugins.Acumatica.Operators
 {
     [Export(typeof(IOperator))]
-    public class AcumaticaDateTimeNowOperator : IOperator
+    public class AcumaticaDateTimeOperator : IOperator
     {
-        public string Name => "acudatetimenow";
+        public string Name => "acudatetime";
 
-        public string Description => "Outputs the current date and time in an Acumatica compatible format.";
+        public string Description => "Converts a date string to an Acumatica compatible format.";
 
         public ExpressionType Type => ExpressionType.Custom;
 
-        public int ParamCount => 0;
+        public int ParamCount => 1;
 
-        public ParamType[]? ParamTypes => [];
+        public ParamType[]? ParamTypes => new ParamType[] { ParamType.String };
 
         public ParamType ReturnType => ParamType.String;
 
@@ -31,8 +31,28 @@ namespace NoFrillsTransformation.Plugins.Acumatica.Operators
 
         public string Evaluate(IEvaluator eval, IExpression expression, IContext context)
         {
-            // Return a date time for "now" in this form: "2022-06-02 09:25:36.083"
-            return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            string parameter = eval.Evaluate(eval, expression.Arguments[0], context);
+            return Execute(parameter);
         }
-   }
+
+        private string Execute(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return string.Empty;
+
+            string pattern = @"(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})\.(\d+)";
+            var match = Regex.Match(input, pattern);
+            if (match.Success)
+            {
+                string date = match.Groups[1].Value;
+                string decimals = match.Groups[2].Value.TrimEnd('0');
+                if (string.IsNullOrEmpty(decimals))
+                {
+                    return date.Replace('T', ' ');
+                }
+                return $"{date.Replace('T', ' ')}.{decimals}";
+            }
+            return input.Replace('T', ' ');
+        }
+    }
 }
