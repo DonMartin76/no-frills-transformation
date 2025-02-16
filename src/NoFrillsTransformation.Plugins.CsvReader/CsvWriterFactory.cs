@@ -25,6 +25,8 @@ namespace NoFrillsTransformation.Plugins.Csv
         public ITargetWriter CreateWriter(IContext context, string target, IFieldDefinition[] fieldDefs, string? config)
         {
             context.Logger.Info("CsvWriterFactory: Creating a CsvWriterPlugin.");
+            if (config != null && config.Contains("sort="))
+                return new CsvSortingWriterPlugin(context, target, GetFieldNames(fieldDefs), GetFieldSizes(fieldDefs), config);
             return new CsvWriterPlugin(context, target, GetFieldNames(fieldDefs), GetFieldSizes(fieldDefs), config);
         }
 

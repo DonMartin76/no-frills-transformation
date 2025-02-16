@@ -14,12 +14,13 @@ namespace NoFrillsTransformation.Plugins.Csv
             if (null == fieldNames)
                 throw new ArgumentException("Cannot create CsvWriterPlugin without field names.");
 
+            _context = context;
             ReadConfig(config);
             CheckUtf8Setting();
-            _fileName = context.ResolveFileName(target.Substring(7), false); // Strip file://
+            int slashIndex = target.IndexOf("//");
+            _fileName = context.ResolveFileName(target.Substring(slashIndex + 2), false); // Strip <protocol>://
             _fieldNames = fieldNames;
             _fieldSizes = fieldSizes;
-            _context = context;
             _writer = new StreamWriter(_fileName, _append, _encoding);
             if (!_append && _headers)
                 WriteHeaders();
