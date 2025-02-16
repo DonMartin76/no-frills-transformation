@@ -1029,10 +1029,10 @@ namespace NoFrillsTransformation
                 try
                 {
                     var tfd = new TargetFieldDef(
-                        field.Name,
+                        context.ReplaceParameters(field.Name),
                         field.MaxSize,
                         (null != field.Config) ? context.ReplaceParameters(field.Config) : null,
-                        ExpressionParser.ParseExpression(field.Expression, context)
+                        ExpressionParser.ParseExpression(context.ReplaceParameters(field.Expression), context)
                     );
                     targetFields[i] = tfd;
                 }
