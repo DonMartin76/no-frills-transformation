@@ -32,5 +32,7 @@ namespace NoFrillsTransformation.Plugins.Acumatica
         public string? Type { get; set; }
         [XmlAttribute("default")]
         public string? Default { get; set; }
+        [XmlAttribute("raw-default")]
+        public string? RawDefault { get; set; }
     }
 }
