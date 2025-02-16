@@ -554,7 +554,7 @@ namespace NoFrillsTransformation
                             ParamNames = paramNameList.ToArray(),
                             ParamTypes = paramTypeList.ToArray(),
                             ReturnType = returnType,
-                            Expression = ExpressionParser.ParseExpression(op.Function, context)
+                            Expression = ExpressionParser.ParseExpression(context.ReplaceParameters(op.Function), context)
                         };
                     }
                     else if (op.Switch != null)
@@ -567,12 +567,12 @@ namespace NoFrillsTransformation
                         for (int i = 0; i < conditionCount; ++i)
                         {
                             var thisCase = op.Switch.Cases[i];
-                            conditions[i] = ExpressionParser.ParseExpression(thisCase.Condition, context);
+                            conditions[i] = ExpressionParser.ParseExpression(context.ReplaceParameters(thisCase.Condition), context);
                             if (conditions[i].Operator.ReturnType != ParamType.Bool)
                                 throw new ArgumentException("The return type of Case conditions must be boolean: " + thisCase.Condition + ", is " + conditions[i].Operator.ReturnType);
-                            caseFunctions[i] = ExpressionParser.ParseExpression(thisCase.Function, context);
+                            caseFunctions[i] = ExpressionParser.ParseExpression(context.ReplaceParameters(thisCase.Function), context);
                         }
-                        var otherwise = ExpressionParser.ParseExpression(op.Switch.Otherwise, context);
+                        var otherwise = ExpressionParser.ParseExpression(context.ReplaceParameters(op.Switch.Otherwise), context);
 
                         context.Operators[name] = new Engine.Operators.CustomOperator(name)
                         {
@@ -619,7 +619,7 @@ namespace NoFrillsTransformation
                     parameters[i] = new TransformerParameter(
                         xmlParam.Name,
                         xmlParam.FunctionString,
-                        ExpressionParser.ParseExpression(xmlParam.FunctionString, context)
+                        ExpressionParser.ParseExpression(context.ReplaceParameters(xmlParam.FunctionString), context)
                     );
                 }
                 ISetting[]? settings = null;
