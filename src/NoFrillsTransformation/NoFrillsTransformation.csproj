@@ -29,6 +29,7 @@
     <ProjectReference Include="../NoFrillsTransformation.Plugins.Salesforce.DotNet/NoFrillsTransformation.Plugins.Salesforce.DotNet.csproj" />
     <ProjectReference Include="../NoFrillsTransformation.Plugins.Statistics/NoFrillsTransformation.Plugins.Statistics.csproj" />
     <ProjectReference Include="../NoFrillsTransformation.Plugins.Xml/NoFrillsTransformation.Plugins.Xml.csproj" />
+    <ProjectReference Include="../NoFrillsTransformation.Plugins.Sql/NoFrillsTransformation.Plugins.Sql.csproj" />
   </ItemGroup>
 
   <ItemGroup>
