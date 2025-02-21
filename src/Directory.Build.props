@@ -1,6 +1,6 @@
 <Project>
     <PropertyGroup>
-        <Version>4.0.8</Version>
+        <Version>4.0.10</Version>
         <Authors>Martin Danielsson</Authors>
         <Company>Haufe-Lexware GmbH &amp; Co. KG</Company>
         <Description>Extensible, simple and fast ETL Tool</Description>

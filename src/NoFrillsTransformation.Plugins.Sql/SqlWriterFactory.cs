@@ -24,7 +24,7 @@ namespace NoFrillsTransformation.Plugins.Sql
 
         public ITargetWriter CreateWriter(IContext context, string target, IFieldDefinition[] fieldDefs, string? config)
         {
-            context.Logger.Info("XmlWriterFactory: Creating an XmlWriterPlugin.");
+            context.Logger.Info("SqlWriterFactory: Creating an SqlWriter.");
             return new SqlWriter(context, target, GetFieldNames(fieldDefs), GetFieldSizes(fieldDefs), config);
         }
 
