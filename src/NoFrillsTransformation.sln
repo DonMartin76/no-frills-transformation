@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoFrillsTransformation.Plug
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoFrillsTransformation.Plugins.Acumatica", "NoFrillsTransformation.Plugins.Acumatica\NoFrillsTransformation.Plugins.Acumatica.csproj", "{32C87CC4-939A-4C55-A100-15E153C5B33C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoFrillsTransformation.Plugins.Sql", "NoFrillsTransformation.Plugins.Sql\NoFrillsTransformation.Plugins.Sql.csproj", "{FB7A0EB5-D7B5-4D05-8530-CDE5EB824D09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,5 +104,9 @@ Global
 		{32C87CC4-939A-4C55-A100-15E153C5B33C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32C87CC4-939A-4C55-A100-15E153C5B33C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32C87CC4-939A-4C55-A100-15E153C5B33C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB7A0EB5-D7B5-4D05-8530-CDE5EB824D09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB7A0EB5-D7B5-4D05-8530-CDE5EB824D09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB7A0EB5-D7B5-4D05-8530-CDE5EB824D09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB7A0EB5-D7B5-4D05-8530-CDE5EB824D09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
